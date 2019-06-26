@@ -35,7 +35,9 @@ class _HomeSwiperState extends State<HomeSwiper> {
             itemCount: 3,
             viewportFraction: 0.8,
             scale: 0.9,
-            pagination: SwiperPagination(),
+            pagination: SwiperPagination(
+              builder: SwiperPagination.dots
+            ),
             // control: SwiperControl(),
           ),
         ),

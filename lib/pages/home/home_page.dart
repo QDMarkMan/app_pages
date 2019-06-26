@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // 页面组件
 import 'home_swiper.dart';
 import 'home_icons.dart';
+import 'home_content.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -17,12 +18,60 @@ class AppTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(left: 10, top: 30),
-        child: Text(
-          "Pages",
-          style: TextStyle(
-            color: Theme.of(context).primaryColor,
-            fontSize: 30
-          ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            // Logo and title
+            Image.asset("assets/images/logo.png", height: 30, width: 30, fit: BoxFit.cover,),
+            SizedBox(
+              width: 2,
+            ),
+            Container(
+              height: 23,
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                "Pages",
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 12
+                ),
+              ),
+            ),
+            // Search 
+            Expanded(
+              child: 
+              Container(
+                margin: EdgeInsets.only(left: 10),
+                color: Colors.grey.withOpacity(.3),
+                child: ConstrainedBox(
+                  // 通过这个方法来限制输入框的高度
+                  constraints: BoxConstraints(
+                    maxHeight: 25
+                  ),
+                  child: TextField(
+                    textInputAction: TextInputAction.search,
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 4.0),
+                      border: InputBorder.none, //隐藏下划线
+                      prefixIcon: Icon(Icons.search, size: 16,),
+                      fillColor: Theme.of(context).primaryColor
+                    ),
+                  ),
+                ),
+              )
+            ),
+            // Search Icon
+            Padding(
+              padding: EdgeInsets.only(left: 15),
+              child: Icon(Icons.aspect_ratio),
+            ),
+            // Message
+            Padding(
+              padding: EdgeInsets.only(left:15, right: 5),
+              child: Icon(Icons.message),
+            )
+          ],
         ),
       );
   }
@@ -84,7 +133,7 @@ class _HomeAppState extends State<HomeApp> {
                     // Icons
                     HomeIcons(),
                     // Content 内容部分
-                    
+                    HomeContent()
                   ],
                 ),
               ),
