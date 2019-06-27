@@ -4,43 +4,44 @@
  * @Version: 
  * @Date: 2019-06-24 10:06:06
  * @LastEditors: etongfu
- * @LastEditTime: 2019-06-24 11:17:31
+ * @LastEditTime: 2019-06-27 09:30:04
  * @Description: 主页面按钮部分
  * @youWant: add you want info here
  */
 import 'package:flutter/material.dart';
+import 'package:app_pages/constants/icons.dart';
 
 List<Map<String, dynamic>> icons = [
   {
-    "icon": Icons.shopping_basket,
+    "icon": CustomIcons.iconCard,
     "title": "icon"
   },
   {
-    "icon": Icons.ac_unit,
+    "icon": CustomIcons.iconFridends,
     "title": "icon"
   },
   {
-    "icon": Icons.access_alarm,
+    "icon": CustomIcons.iconMap,
     "title": "icon"
   },
   {
-    "icon": Icons.backup,
+    "icon": CustomIcons.iconMoney,
     "title": "icon"
   },
   {
-    "icon": Icons.cake,
+    "icon": CustomIcons.iconTalk,
     "title": "icon"
   },
   {
-    "icon": Icons.dashboard,
+    "icon": CustomIcons.iconVideo,
     "title": "icon"
   },
   {
-    "icon": Icons.email,
+    "icon": CustomIcons.iconVip,
     "title": "icon"
   },
   {
-    "icon": Icons.fastfood,
+    "icon": CustomIcons.iconVoice,
     "title": "icon"
   },
 ];

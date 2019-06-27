@@ -12,21 +12,19 @@ class HomePage extends StatelessWidget {
         );
   }
 }
-/// app 标题
+/// app 标题栏部分
 class AppTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(left: 10, top: 30),
+        padding: EdgeInsets.only(left: 10, top: 15),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             // Logo and title
             Image.asset("assets/images/logo.png", height: 30, width: 30, fit: BoxFit.cover,),
-            SizedBox(
-              width: 2,
-            ),
+            /*
             Container(
               height: 23,
               alignment: Alignment.bottomLeft,
@@ -37,13 +35,15 @@ class AppTitle extends StatelessWidget {
                   fontSize: 12
                 ),
               ),
-            ),
+            ), */
             // Search 
             Expanded(
-              child: 
-              Container(
+              child: Container(
                 margin: EdgeInsets.only(left: 10),
-                color: Colors.grey.withOpacity(.3),
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(.3),
+                  borderRadius: BorderRadius.circular(10)
+                ),
                 child: ConstrainedBox(
                   // 通过这个方法来限制输入框的高度
                   constraints: BoxConstraints(

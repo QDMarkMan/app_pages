@@ -5,7 +5,7 @@
  * @Description: 底部导航栏
  * @youWant: add you want info here
  * @Date: 2019-03-28 10:38:53
- * @LastEditTime: 2019-06-21 10:49:07
+ * @LastEditTime: 2019-06-27 09:48:22
  */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -95,9 +95,10 @@ class _BottomBarState extends State<BottomBar> {
           items: bottoms,
           currentIndex: _currentIndex,
           onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
+            // 切换页面
+            // setState(() {
+            //   _currentIndex = index;
+            // });
             // 开启震动
             Vibrate.feedback(FeedbackType.light);
           },
