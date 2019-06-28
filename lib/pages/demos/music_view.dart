@@ -4,7 +4,7 @@
  * @Version: 
  * @Date: 2019-06-03 09:54:42
  * @LastEditors: etongfu
- * @LastEditTime: 2019-06-03 11:48:47
+ * @LastEditTime: 2019-06-28 10:15:29
  * @Description: 概念音乐页面
  * @youWant: add you want info here
  */
@@ -99,7 +99,7 @@ class _MusicViewState extends State<MusicView> {
                         padding: EdgeInsets.all(15),
                         child: ClipOval(
                             clipper: ImageClipper(),
-                            child: Image.asset("images/bg.jpg", fit: BoxFit.cover,),
+                            child: Image.asset("assets/images/bg.jpg", fit: BoxFit.cover,),
                         ),
                       )
                     ),
@@ -210,8 +210,8 @@ class _MusicViewState extends State<MusicView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      song('images/01.png', 'Bieber', 'This Is Song'),
-                      song('images/02.png', 'Bieber', 'This Is Song')
+                      song('assets/images/cards/01.png', 'Bieber', 'This Is Song'),
+                      song('assets/images/cards/02.png', 'Bieber', 'This Is Song')
                     ],
                   ),
                 )

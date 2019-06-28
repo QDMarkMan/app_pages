@@ -64,7 +64,7 @@ class AppTitle extends StatelessWidget {
             // Search Icon
             Padding(
               padding: EdgeInsets.only(left: 15),
-              child: Icon(IconData(0xe89f, fontFamily: "Iconfonts")),
+              child: Icon(IconData(0xe89f, fontFamily: "Iconfonts"), size: 21,),
             ),
             // Message
             Padding(

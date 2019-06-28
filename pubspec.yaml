@@ -63,11 +63,20 @@ flutter:
   - assets/images/logo.png
   - assets/images/bg.jpg
   - assets/images/sun.png
+  - assets/images/user.png
+  - assets/images/user_bg.jpg
   - assets/images/nike_logo.jpg
+  - assets/images/avator.jpg
+  - assets/images/loading.gif
+
   # 示例页面图片
   - assets/images/screens/guide_page.png
   - assets/images/screens/shopping_page.png
-  - assets/images/screens/card_page.png
+  - assets/images/screens/card_page.png 
+  - assets/images/screens/net_page.png
+  - assets/images/screens/music_page.png
+  - assets/images/screens/loginui_page.png
+
   # assets/分类图片
   - assets/images/cats/001.png
   - assets/images/cats/002.png

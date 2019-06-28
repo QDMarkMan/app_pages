@@ -9,6 +9,10 @@ class Routes {
   static String guidePage = "/guide";
   static String shoppingPage = "/shopping";
   static String cardPage = "/card";
+  static String netPage = "/netflix";
+  static String musicPage = "/music";
+  static String loginUiPage = "/loginui";
+
 
 
   static void configureRoutes(Router router) async{
@@ -23,6 +27,8 @@ class Routes {
     router.define(guidePage, handler: GuideHandle, transitionType:TransitionType.inFromRight);
     router.define(shoppingPage, handler: ShoppingHandle, transitionType:TransitionType.inFromRight);
     router.define(cardPage, handler: CardHandle, transitionType:TransitionType.inFromRight);
-
+    router.define(netPage, handler: NetFlixHandle, transitionType:TransitionType.inFromRight);
+    router.define(musicPage, handler: MusicHandle, transitionType:TransitionType.inFromRight);
+    router.define(loginUiPage, handler: LoginUIHandle, transitionType:TransitionType.inFromRight);
   }
 }

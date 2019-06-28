@@ -5,7 +5,7 @@
  * @Description: 底部导航栏
  * @youWant: add you want info here
  * @Date: 2019-03-28 10:38:53
- * @LastEditTime: 2019-06-27 09:48:22
+ * @LastEditTime: 2019-06-28 10:58:39
  */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +14,8 @@ import 'package:vibrate/vibrate.dart';
 
 // 引入的页面
 import 'package:app_pages/pages/home/home_page.dart';
-
-
+import 'package:app_pages/pages/user/user_page.dart';
+import 'package:app_pages/pages/widget/widget_page.dart';
 class BottomBar extends StatefulWidget {
   @override
   _BottomBarState createState() => _BottomBarState();
@@ -32,12 +32,14 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> pages = [
     // SliverHomePage(),
     HomePage(),
+    WidgetPage(),
+    UserPage()
   ];
   // bottoms中的按钮
   List<BottomNavigationBarItem> bottoms = [
     BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), title: Text('Home', style: _iconStyle,)),
     BottomNavigationBarItem(icon: Icon(CupertinoIcons.settings), title: Text('Widgets', style: _iconStyle,)),
-    BottomNavigationBarItem(icon: Icon(CupertinoIcons.folder), title: Text('Page', style: _iconStyle,))
+    BottomNavigationBarItem(icon: Icon(CupertinoIcons.person), title: Text('Mine', style: _iconStyle,))
   ];
   /// 是否超过2S
   bool _isExceed2 (DateTime oldTime, DateTime newTime) {
@@ -96,9 +98,9 @@ class _BottomBarState extends State<BottomBar> {
           currentIndex: _currentIndex,
           onTap: (index) {
             // 切换页面
-            // setState(() {
-            //   _currentIndex = index;
-            // });
+            setState(() {
+              _currentIndex = index;
+            });
             // 开启震动
             Vibrate.feedback(FeedbackType.light);
           },

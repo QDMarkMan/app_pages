@@ -6,6 +6,9 @@ import 'package:app_pages/pages/home/home_page.dart';
 import 'package:app_pages/pages/demos/guide/guide_page.dart';
 import 'package:app_pages/pages/demos/shoppingUI/shopping.dart';
 import 'package:app_pages/pages/demos/card_page.dart';
+import 'package:app_pages/pages/demos/netflix/netflix_page.dart';
+import 'package:app_pages/pages/demos/music_view.dart';
+import 'package:app_pages/pages/demos/login_ui2.dart';
 
 
 
@@ -31,6 +34,21 @@ var ShoppingHandle = Handler(
   return ShoppintUiPage();
 });
 var CardHandle = Handler(
-    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return CardPage();
 });
+var NetFlixHandle = Handler(
+  handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    return NetflixPage();
+  }
+);
+var MusicHandle = Handler(
+  handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    return MusicView();
+  }
+);
+var LoginUIHandle = Handler(
+  handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    return LoginUI2();
+  }
+);

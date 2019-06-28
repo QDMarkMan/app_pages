@@ -4,7 +4,7 @@
  * @Version: 
  * @Date: 2019-06-26 14:03:08
  * @LastEditors: etongfu
- * @LastEditTime: 2019-06-27 10:49:50
+ * @LastEditTime: 2019-06-28 09:54:06
  * @Description: icon数据
  * @youWant: add you want info here
  */
@@ -23,4 +23,6 @@ class CustomIcons {
   static IconData iconTalk = IconData(0xe8a2, fontFamily: "Iconfonts");
   static IconData iconScan = IconData(0xe89f, fontFamily: "Iconfonts");
   static IconData iconCircle = IconData(0xe8b1, fontFamily: "Iconfonts");
+  static IconData iconSetting = IconData(0xe899, fontFamily: "Iconfonts");
+  static IconData iconLight = IconData(0xe8a7, fontFamily: "Iconfonts");
 }

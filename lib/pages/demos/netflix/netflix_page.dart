@@ -4,17 +4,17 @@
  * @Version: 
  * @Date: 2019-06-18 09:31:59
  * @LastEditors: etongfu
- * @LastEditTime: 2019-06-26 10:32:42
+ * @LastEditTime: 2019-06-28 09:35:54
  * @Description: 仿 Netflix 主页 
  * @youWant: add you want info here
  */
 import 'package:flutter/material.dart';
 /// 图片列表
 List<String> images = [
-  "images/cards/01.png",
-  "images/cards/02.png",
-  "images/cards/03.png",
-  "images/cards/04.png",
+  "assets/images/cards/01.png",
+  "assets/images/cards/02.png",
+  "assets/images/cards/03.png",
+  "assets/images/cards/04.png",
 ];
 // 标题部分
 List<String> titles = [
@@ -66,6 +66,7 @@ class _NetflixAppState extends State<NetflixApp> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       child: Column(
         children: <Widget>[
           ScreenTop(),
@@ -99,7 +100,7 @@ class ScreenTop extends StatelessWidget {
               ),
               child: Stack(
                 children: <Widget>[
-                  Image.asset("images/sun.png",fit:BoxFit.cover, width: double.infinity),
+                  Image.asset("assets/images/sun.png",fit:BoxFit.cover, width: double.infinity),
                   Container(
                     height: double.infinity,
                     width: double.infinity,

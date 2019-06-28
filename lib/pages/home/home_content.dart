@@ -4,7 +4,7 @@
  * @Version: 
  * @Date: 2019-06-26 09:14:56
  * @LastEditors: etongfu
- * @LastEditTime: 2019-06-27 11:18:38
+ * @LastEditTime: 2019-06-28 12:00:32
  * @Description: Home 内容
  * @youWant: add you want info here
  */
@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:app_pages/routes/application.dart';
 import 'data.dart';
 import 'package:app_pages/constants/icons.dart';
+
 class HomeContent extends StatefulWidget {
   @override
   _HomeContentState createState() => _HomeContentState();
@@ -28,7 +29,13 @@ class _HomeContentState extends State<HomeContent> {
           color: Colors.white,
           width: double.infinity,
           padding: EdgeInsets.all(10),
-          child: Text('Demos'),
+          child: Row(
+            children: <Widget>[
+              Icon(CustomIcons.iconLight, size: 18,),
+              SizedBox(width: 10,),
+              Text('Ideas')
+            ],
+          ),
         ),
         Container(
           height: size.height / 3,
@@ -83,7 +90,12 @@ class PageItem extends StatelessWidget {
                     children: <Widget>[
                       // 图片展示
                       Container(
-                        child: Image.asset(pageModel.imageUrl, fit: BoxFit.cover,),
+                        // child: Image.asset(pageModel.imageUrl, fit: BoxFit.cover,),
+                        child: FadeInImage(
+                              placeholder: AssetImage("assets/images/loading.gif"),
+                              fit: BoxFit.cover,
+                              image: AssetImage(pageModel.imageUrl),
+                            ),
                       ),
                       // 类型标识图标
                       Positioned(
