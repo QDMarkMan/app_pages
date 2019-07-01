@@ -4,10 +4,12 @@
  * @Version: 
  * @Date: 2019-06-28 10:35:09
  * @LastEditors: etongfu
- * @LastEditTime: 2019-06-28 12:01:15
+ * @LastEditTime: 2019-07-01 11:59:32
  * @Description: User Center Page
  * @youWant: add you want info here
  */
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:vibrate/vibrate.dart';
 
@@ -28,29 +30,58 @@ class UserApp extends StatefulWidget {
   _UserAppState createState() => _UserAppState();
 }
 
-class _UserAppState extends State<UserApp> {
+class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
   String  _regionName = 'ETongFu'; // 用户名称
-
-
 
   final double _offsetLeft = 17; 
   double _imageHeight = 0.0; // 下拉高度
+  double _completed = 0.0; // 下拉完成部分
   int animatedTime = 300;
   bool isVibrated = false; // 当前次是否已经震动过了
+
+  AnimationController controller;//动画控制器
+  Animation<double> curved;// 
+
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // 异步获取当前的电池电量
+    //初始化动画
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800 ),
+    );
+    
+    // 动画监听器
+    controller.addListener(() {
+      if (controller.isCompleted) {
+        controller.forward();
+      }
+    });
+
+    curved = Tween(begin: 0.0, end: 1.0).animate(controller);
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
   // 设置透明度
   double _setOpacity () {
-    if (_imageHeight >= 40 ) {
+    if (_imageHeight > 20 ) {
       return 1;
     } else {
       return 0;
     }
+  }
+
+  double _setComplete (double height) {
+    setState(() {
+      _completed =  (height / 60) * 100;
+    });
   }
   //　跳转页面
   void toNextPage (String path) {
@@ -61,13 +92,12 @@ class _UserAppState extends State<UserApp> {
   Widget build(BuildContext context) {
     final Size _screenSize = MediaQuery.of(context).size;
     double startIndex = 0.0; // 起始位置
-
     return Scaffold(
       body: SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
         child: Listener(
           onPointerDown: (event) {
-            var position = event.position.distance;
+            var position = event.position.dy;
             startIndex = position;
             // 重置动画时间
             setState(() {
@@ -76,19 +106,18 @@ class _UserAppState extends State<UserApp> {
           },
           // 监听下拉
           onPointerMove: (event) {
-              var position = event.position.distance;
+              var position = event.position.dy;
+              // 下拉距离  (当前位置 - 开始位置)
               var detal = position - startIndex;
+              _setComplete(detal / 10);
               // 赋值
               if (detal > 100) {
                 setState(() {
-                  _imageHeight = detal; 
-                });
-                setState(() {
-                  _imageHeight = _imageHeight / 10;
+                  _imageHeight = detal / 10;
                 });
               }
               // 调用震动
-              if (_imageHeight > 80 && !isVibrated) {
+              if (_imageHeight > 60 && !isVibrated) {
                 // 调用震动
                 Vibrate.feedback(FeedbackType.light);
                 setState(() {
@@ -100,10 +129,14 @@ class _UserAppState extends State<UserApp> {
             setState(() {
               isVibrated = false; 
             });
+            if (_imageHeight == 60) {
+              print('启动动画');
+              controller.forward(); // 开始旋转动画
+            }
             // 下拉高度大于50的时候展开加载
-            if (_imageHeight > 50 ) {
+            if (_imageHeight > 60 ) {
                 setState(() {
-                  _imageHeight = 40;
+                  _imageHeight = 60;
                   animatedTime = 500;
                 });
               Future.delayed(Duration(seconds: 2), () {
@@ -112,13 +145,16 @@ class _UserAppState extends State<UserApp> {
                   setState(() {
                     _imageHeight = 0; 
                   });
+                  _setComplete(0);
                 }
               });
             } else {
+              // 没有触发loading的时候
               if (mounted) {
                 setState(() {
                   _imageHeight = 0;
                 });
+                _setComplete(0);
               }
             }
           },
@@ -173,11 +209,27 @@ class _UserAppState extends State<UserApp> {
                           child: AnimatedOpacity(
                             duration: Duration(seconds: 1),
                             opacity: _setOpacity(),
-                            // child: Icon(Icons.ac_unit, size: 35, color: Colors.white,)
-                            child: Icon(
-                              Icons.cloud_circle,
-                              size: 35.0,
-                            ),
+                            // opacity: 1,
+                            child: Container(
+                              height: 30,
+                              width: 30,
+                              child: CustomPaint(
+                                foregroundPainter: LoadingPainter(
+                                  lineColor: Colors.transparent,
+                                  completeColor: Colors.white,
+                                  completePercent: _completed,
+                                  width: 2
+                                ),
+                                child: Container(
+                                  child: RotationTransition(//旋转动画
+                                          turns: curved,
+                                          child: Center(
+                                            child: Icon(Icons.track_changes,color: Colors.white),
+                                          ),
+                                  ),
+                                )
+                              ),
+                            )
                           ),
                         ),
                       )
@@ -226,3 +278,56 @@ class HomeClipper extends CustomClipper<Path> {
     return false;
   }
 }
+
+// 加载loading canvas
+class LoadingPainter extends CustomPainter {
+  
+  Color lineColor;
+  Color completeColor;
+  double completePercent;
+  double width;
+
+  LoadingPainter({
+    this.lineColor,
+    this.completeColor,
+    this.completePercent,
+    this.width
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // canvas paint
+    Paint line = Paint()
+    ..color = lineColor
+    ..strokeCap = StrokeCap.round
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = width;
+
+    Offset center = Offset(size.width / 2, size.height / 2); // 圆心
+
+    double radius = min(size.width / 2, size.height / 2); // 半径
+
+    canvas.drawCircle(center, radius, line);
+
+    double arcAngle = 2*pi*(completePercent / 100);
+    // 绘制已完成的部分
+    Paint complete = Paint()
+            ..color = completeColor
+            ..strokeCap = StrokeCap.round
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = width;
+    canvas.drawArc(
+        Rect.fromCircle(center: center, radius: radius),
+        -pi/2,  //  从正上方开始
+        arcAngle,
+        false,
+        complete
+    );
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
+  }
+  
+} 
