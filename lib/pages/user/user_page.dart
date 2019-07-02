@@ -4,8 +4,8 @@
  * @Version: 
  * @Date: 2019-06-28 10:35:09
  * @LastEditors: etongfu
- * @LastEditTime: 2019-07-01 11:59:32
- * @Description: User Center Page
+ * @LastEditTime: 2019-07-02 10:41:14
+ * @Description: User Center Page ==> should check
  * @youWant: add you want info here
  */
 import 'dart:math';
@@ -13,7 +13,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:vibrate/vibrate.dart';
 
-import 'package:app_pages/routes/application.dart';
+import 'info_tabs.dart';
 
 
 class UserPage extends StatelessWidget {
@@ -31,12 +31,12 @@ class UserApp extends StatefulWidget {
 }
 
 class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
-  String  _regionName = 'ETongFu'; // 用户名称
+  String  _regionName = 'Mark'; // 用户名称
 
-  final double _offsetLeft = 17; 
+  // final double _offsetLeft = 17; 
   double _imageHeight = 0.0; // 下拉高度
   double _completed = 0.0; // 下拉完成部分
-  int animatedTime = 300;
+  int animatedTime = 300; // 动画时间
   bool isVibrated = false; // 当前次是否已经震动过了
 
   AnimationController controller;//动画控制器
@@ -83,11 +83,6 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
       _completed =  (height / 60) * 100;
     });
   }
-  //　跳转页面
-  void toNextPage (String path) {
-    Application.router.navigateTo(context, path);
-  }
-
   @override
   Widget build(BuildContext context) {
     final Size _screenSize = MediaQuery.of(context).size;
@@ -130,7 +125,6 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
               isVibrated = false; 
             });
             if (_imageHeight == 60) {
-              print('启动动画');
               controller.forward(); // 开始旋转动画
             }
             // 下拉高度大于50的时候展开加载
@@ -160,7 +154,7 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
           },
           child: Column(
             children: <Widget>[
-              // ============ 用户信息 ============
+              // ============ 头像和背景图 ============
               ClipPath(
                 clipper: HomeClipper(),
                 child: AnimatedContainer(
@@ -177,7 +171,7 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
                   child: Stack(
                     overflow: Overflow.clip,
                     children: <Widget>[
-                      // ============ 圆形头像 ============
+                      // ============ avator ============
                       Positioned(
                         left: 17,
                         bottom: 40,
@@ -191,7 +185,7 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
                             ),
                         )
                       ),
-                      // ============ 用户名 ============
+                      // ============ username ============
                       Positioned(
                         right: 10,
                         bottom: 60,
@@ -200,7 +194,7 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
                           style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      // ============ loading ============
+                      // ============ top loading ============
                       Positioned(
                         top: 10,
                         child: Container(
@@ -237,13 +231,8 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              Container(
-                height: 300,
-                color: Colors.transparent,
-                child: Center(
-                  child: Text('In development'),
-                ),
-              )
+              // info tabs
+              InfoTabs()
             ],
           ),
         ),
