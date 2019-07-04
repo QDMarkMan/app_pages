@@ -4,7 +4,7 @@
  * @Version: 
  * @Date: 2019-06-28 10:35:09
  * @LastEditors: etongfu
- * @LastEditTime: 2019-07-02 10:41:14
+ * @LastEditTime: 2019-07-04 11:28:56
  * @Description: User Center Page ==> should check
  * @youWant: add you want info here
  */
@@ -38,14 +38,12 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
   double _completed = 0.0; // 下拉完成部分
   int animatedTime = 300; // 动画时间
   bool isVibrated = false; // 当前次是否已经震动过了
-
   AnimationController controller;//动画控制器
   Animation<double> curved;// 
 
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     //初始化动画
     controller = AnimationController(
@@ -86,7 +84,8 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final Size _screenSize = MediaQuery.of(context).size;
-    double startIndex = 0.0; // 起始位置
+    double startIndex = 0.0; // 开始滑动的位置
+
     return Scaffold(
       body: SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
@@ -101,6 +100,16 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
           },
           // 监听下拉
           onPointerMove: (event) {
+              Offset _detal = event.delta;
+              // 取消X轴滑动的情况 ==> 
+              // TODO: 不知道有没有更好的方式？
+              if( _detal.dx < -0.1 || _detal.dx > 0.1) {
+                return;
+              }
+              // 取消向上滑动动作
+              if (_detal.dy <= 0) {
+                return;
+              }
               var position = event.position.dy;
               // 下拉距离  (当前位置 - 开始位置)
               var detal = position - startIndex;
@@ -153,6 +162,8 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
             }
           },
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // ============ 头像和背景图 ============
               ClipPath(
