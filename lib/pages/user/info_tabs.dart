@@ -3,7 +3,7 @@
  * @Email: 13583254085@163.com
  * @Date: 2019-07-02 10:38:19
  * @LastEditors: etongfu
- * @LastEditTime: 2019-07-04 11:40:55
+ * @LastEditTime: 2019-08-05 22:16:16
  * @Description: Info tabs for user
  * @youWant: add you want info here
  */
@@ -114,6 +114,7 @@ class UserInfo extends StatelessWidget {
           }),
           _buildItem("最近动态"),
           _buildItem("其他"),
+          _buildItem('测试')
         ],
       ),
     );

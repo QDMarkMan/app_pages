@@ -33,7 +33,7 @@ dependencies:
   # 按需引入地图模块
   # amap_base_map: ^0.3.4
   # amap_base_location: ^0.3.4
-  vibrate: ^0.0.4 # 震动权限
+  # vibrate: ^0.0.4 # 震动权限
   fluttery_seekbar: ^0.0.1
   # barcode_scan: ^0.0.4 # 二维码扫描
   flutter_screenutil: ^0.5.2 # 屏幕适配

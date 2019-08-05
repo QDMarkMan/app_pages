@@ -5,12 +5,12 @@
  * @Description: 底部导航栏
  * @youWant: add you want info here
  * @Date: 2019-03-28 10:38:53
- * @LastEditTime: 2019-06-28 10:58:39
+ * @LastEditTime: 2019-08-05 20:59:21
  */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:vibrate/vibrate.dart';
+// import 'package:vibrate/vibrate.dart';
 
 // 引入的页面
 import 'package:app_pages/pages/home/home_page.dart';
@@ -102,7 +102,7 @@ class _BottomBarState extends State<BottomBar> {
               _currentIndex = index;
             });
             // 开启震动
-            Vibrate.feedback(FeedbackType.light);
+            // Vibrate.feedback(FeedbackType.light);
           },
         ),
       ),

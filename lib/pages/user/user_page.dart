@@ -4,14 +4,14 @@
  * @Version: 
  * @Date: 2019-06-28 10:35:09
  * @LastEditors: etongfu
- * @LastEditTime: 2019-07-04 11:28:56
+ * @LastEditTime: 2019-08-05 22:15:48
  * @Description: User Center Page ==> should check
  * @youWant: add you want info here
  */
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:vibrate/vibrate.dart';
+// import 'package:vibrate/vibrate.dart';
 
 import 'info_tabs.dart';
 
@@ -123,7 +123,7 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
               // 调用震动
               if (_imageHeight > 60 && !isVibrated) {
                 // 调用震动
-                Vibrate.feedback(FeedbackType.light);
+                // Vibrate.feedback(FeedbackType.light);
                 setState(() {
                   isVibrated = true; 
                 });
