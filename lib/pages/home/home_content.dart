@@ -4,7 +4,7 @@
  * @Version: 
  * @Date: 2019-06-26 09:14:56
  * @LastEditors: etongfu
- * @LastEditTime: 2019-08-05 22:20:26
+ * @LastEditTime: 2019-08-05 22:23:59
  * @Description: Home 内容
  * @youWant: add you want info here
  */
@@ -75,6 +75,7 @@ class PageItem extends StatelessWidget {
           child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Container(
+                  /// 计算宽度 
                   width: MediaQuery.of(context).size.width / 3,
                   decoration: BoxDecoration(
                     boxShadow: [
