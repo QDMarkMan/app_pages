@@ -5,7 +5,7 @@
  * @Description: 底部导航栏
  * @youWant: add you want info here
  * @Date: 2019-03-28 10:38:53
- * @LastEditTime: 2019-08-05 20:59:21
+ * @LastEditTime: 2019-09-13 11:06:52
  */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +89,10 @@ class _BottomBarState extends State<BottomBar> {
     // WillPopScope 可以对物理按键进行拦截
     return WillPopScope(
       child: Scaffold(
-        body: pages[_currentIndex],
+        // safe area可以防止当前组件盖住上面的东西
+        body: SafeArea(
+          child: pages[_currentIndex],
+        ),
         bottomNavigationBar: CupertinoTabBar(
           // type: CupertinoTabBar.fixed,
           iconSize: 24,

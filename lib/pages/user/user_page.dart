@@ -4,7 +4,7 @@
  * @Version: 
  * @Date: 2019-06-28 10:35:09
  * @LastEditors: etongfu
- * @LastEditTime: 2019-08-05 22:15:48
+ * @LastEditTime: 2019-09-13 16:16:52
  * @Description: User Center Page ==> should check
  * @youWant: add you want info here
  */
@@ -12,9 +12,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 // import 'package:vibrate/vibrate.dart';
-
 import 'info_tabs.dart';
-
 
 class UserPage extends StatelessWidget {
   @override

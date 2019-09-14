@@ -1,10 +1,9 @@
 /*
  * @Author: etongfu
  * @Email: 13583254085@163.com
- * @Version: 
  * @Date: 2019-06-26 09:14:56
  * @LastEditors: etongfu
- * @LastEditTime: 2019-08-05 22:23:59
+ * @LastEditTime: 2019-09-13 15:23:38
  * @Description: Home 内容
  * @youWant: add you want info here
  */
@@ -38,7 +37,7 @@ class _HomeContentState extends State<HomeContent> {
           ),
         ),
         Container(
-          height: size.height / 3,
+          height: size.height / 2.8,
           padding: EdgeInsets.only(left: 10, bottom: 20),
           color: Colors.white,
           child: ListView.builder(
@@ -76,7 +75,7 @@ class PageItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: Container(
                   /// 计算宽度 
-                  width: MediaQuery.of(context).size.width / 3,
+                  width: MediaQuery.of(context).size.width / 2.8,
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
