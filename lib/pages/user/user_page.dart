@@ -100,7 +100,6 @@ class _UserAppState extends State<UserApp> with TickerProviderStateMixin {
           onPointerMove: (event) {
               Offset _detal = event.delta;
               // 取消X轴滑动的情况 ==> 
-              // TODO: 不知道有没有更好的方式？
               if( _detal.dx < -0.1 || _detal.dx > 0.1) {
                 return;
               }
